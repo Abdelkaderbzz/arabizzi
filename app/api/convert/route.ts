@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { generateText } from "ai";
-import { anthropic } from "@ai-sdk/anthropic";
+import { google } from "@ai-sdk/google";
 import { getClientIp } from "@/lib/get-client-ip";
 import { UsageTracker } from "@/lib/usage-tracker";
 
@@ -62,10 +62,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ arabicText: cachedResult });
     }
 
-    if (!process.env.ANTHROPIC_API_KEY) {
-      console.error("ANTHROPIC_API_KEY is not set");
+    if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+      console.error("GOOGLE_GENERATIVE_AI_API_KEY is not set");
       return NextResponse.json(
-        { error: "ANTHROPIC_API_KEY is not set" },
+        { error: "GOOGLE_GENERATIVE_AI_API_KEY is not set" },
         { status: 500 }
       );
     }
@@ -73,10 +73,10 @@ export async function POST(request: Request) {
     const prompt = toFusha ? fushaPrompt : latinaPrompt;
 
     const { text } = await generateText({
-      model: anthropic("claude-3-7-sonnet-20250219"),
+      model: google("gemini-2.5-flash"),
       prompt: prompt(latinText),
       temperature: 0.1,
-      maxTokens: 1000,
+      maxOutputTokens: 1000,
     });
 
     const result = text.trim();
