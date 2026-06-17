@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Arabic Converter</title>
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div class="brand">
+          <div class="badge" id="hint-badge">3 → ع · 7 → ح · 9 → ق</div>
+          <h1 id="title">Arabic Converter</h1>
+          <p id="description">
+            Convert Tunisian Arabic text between Latin and Arabic scripts
+          </p>
+        </div>
+        <div class="header-actions">
+          <button class="icon-btn" id="settings-btn" title="Settings">⚙</button>
+          <button class="lang-btn" id="lang-btn">العربية</button>
+        </div>
+      </header>
+
+      <!-- Settings / API key -->
+      <section class="card settings" id="settings-panel" hidden>
+        <label class="label" id="key-label" for="api-key">Gemini API key</label>
+        <p class="hint" id="key-hint">
+          Stored only in your browser. Get a free key from Google AI Studio.
+        </p>
+        <div class="key-row">
+          <input
+            type="password"
+            id="api-key"
+            class="input"
+            placeholder="AIza..."
+            autocomplete="off"
+          />
+          <button class="btn-secondary" id="save-key" type="button">Save</button>
+        </div>
+        <a
+          class="link"
+          id="key-link"
+          href="https://aistudio.google.com/apikey"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Get an API key →</a
+        >
+        <div class="key-status" id="key-status"></div>
+      </section>
+
+      <!-- Converter -->
+      <section class="card">
+        <label class="label" id="input-label" for="latin-input">
+          Tunisian Arabic (Latin script)
+        </label>
+        <textarea
+          id="latin-input"
+          class="input textarea"
+          dir="ltr"
+          placeholder="Type Tunisian Arabic using Latin characters (e.g., '3aslema, chneya 7alek?')"
+        ></textarea>
+
+        <span class="label" id="mode-label">Output type</span>
+        <div class="segmented" role="tablist">
+          <button class="seg active" id="mode-fusha" type="button">
+            <span class="seg-title" data-key="fusha">Fusha</span>
+            <span class="seg-desc" data-key="fushaDesc">Modern Standard Arabic</span>
+          </button>
+          <button class="seg" id="mode-tunisian" type="button">
+            <span class="seg-title" data-key="tunisian">Tunisian</span>
+            <span class="seg-desc" data-key="tunisianDesc">Arabic script</span>
+          </button>
+        </div>
+
+        <button class="btn-primary" id="convert-btn" type="button" disabled>
+          <span id="convert-label">Convert</span>
+        </button>
+
+        <div class="alert" id="error" hidden></div>
+
+        <div class="output-head">
+          <span class="label" id="output-label">Modern Standard Arabic</span>
+          <button class="copy-btn" id="copy-btn" type="button" hidden>Copy</button>
+        </div>
+        <div class="output empty" id="output" dir="rtl">
+          Your converted text will appear here
+        </div>
+      </section>
+
+      <!-- History -->
+      <section class="card history" id="history-card" hidden>
+        <div class="history-head">
+          <h2 id="history-title">Recent Conversions</h2>
+          <button class="copy-btn" id="clear-btn" type="button">Clear</button>
+        </div>
+        <div id="history-list" class="history-list"></div>
+      </section>
+
+      <footer class="footer">
+        <span id="footer-text">Powered by Google Gemini</span>
+      </footer>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
