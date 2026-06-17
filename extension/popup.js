@@ -29,6 +29,12 @@ const I18N = {
     outputTunisian: "Tunisian Arabic (Arabic script)",
     outputEmpty: "Your converted text will appear here",
     historyTitle: "Recent Conversions",
+    tabRecent: "Recent",
+    tabSaved: "Saved",
+    savedEmpty: "No saved conversions yet",
+    historyEmpty: "No conversion history yet",
+    bookmark: "Save",
+    unbookmark: "Remove from saved",
     clear: "Clear",
     delete: "Delete",
     keyLabel: "Gemini API key",
@@ -61,6 +67,12 @@ const I18N = {
     outputTunisian: "العربية التونسية (حروف عربية)",
     outputEmpty: "سيظهر النص المحوّل هنا",
     historyTitle: "التحويلات الأخيرة",
+    tabRecent: "الأخيرة",
+    tabSaved: "المحفوظة",
+    savedEmpty: "لا توجد تحويلات محفوظة بعد",
+    historyEmpty: "لا يوجد سجل تحويل بعد",
+    bookmark: "حفظ",
+    unbookmark: "إزالة من المحفوظات",
     clear: "مسح",
     delete: "حذف",
     keyLabel: "مفتاح Gemini API",
@@ -121,7 +133,18 @@ let state = {
   toFusha: true,
   apiKey: "",
   history: [],
+  historyTab: "recent",
 };
+
+const MAX_RECENT = 10;
+
+function pruneHistory(entries) {
+  const bookmarked = entries.filter((entry) => entry.bookmarked);
+  const recent = entries
+    .filter((entry) => !entry.bookmarked)
+    .slice(0, MAX_RECENT);
+  return [...bookmarked, ...recent].sort((a, b) => b.timestamp - a.timestamp);
+}
 
 // Elements
 const $ = (id) => document.getElementById(id);
@@ -169,7 +192,8 @@ function applyLanguage() {
   $("latin-input").placeholder = tr.inputPlaceholder;
   $("mode-label").textContent = tr.modeLabel;
   $("convert-label").textContent = tr.convert;
-  $("history-title").textContent = tr.historyTitle;
+  $("tab-recent-label").textContent = tr.tabRecent;
+  $("tab-saved-label").textContent = tr.tabSaved;
   $("clear-btn").textContent = tr.clear;
   $("copy-btn").textContent = tr.copy;
   $("key-label").textContent = tr.keyLabel;
@@ -234,15 +258,47 @@ function validateInput() {
 function renderHistory() {
   const card = $("history-card");
   const list = $("history-list");
+  const empty = $("history-empty");
+  const clearBtn = $("clear-btn");
+
+  const saved = state.history.filter((entry) => entry.bookmarked);
+  const recent = state.history.filter((entry) => !entry.bookmarked);
+  const entries = state.historyTab === "saved" ? saved : recent;
+
+  $("tab-recent-count").textContent = String(recent.length);
+  $("tab-saved-count").textContent = String(saved.length);
+  $("tab-recent").classList.toggle("active", state.historyTab === "recent");
+  $("tab-saved").classList.toggle("active", state.historyTab === "saved");
+  $("tab-recent").setAttribute(
+    "aria-selected",
+    state.historyTab === "recent" ? "true" : "false"
+  );
+  $("tab-saved").setAttribute(
+    "aria-selected",
+    state.historyTab === "saved" ? "true" : "false"
+  );
+
   if (!state.history.length) {
     card.hidden = true;
     list.innerHTML = "";
+    empty.hidden = true;
     return;
   }
+
   card.hidden = false;
+  clearBtn.hidden = state.historyTab !== "recent" || !recent.length;
   list.innerHTML = "";
 
-  state.history.forEach((entry) => {
+  if (!entries.length) {
+    empty.hidden = false;
+    empty.textContent =
+      state.historyTab === "saved" ? t().savedEmpty : t().historyEmpty;
+    return;
+  }
+
+  empty.hidden = true;
+
+  entries.forEach((entry) => {
     const item = document.createElement("div");
     item.className = "history-item";
 
@@ -255,6 +311,20 @@ function renderHistory() {
 
     const actions = document.createElement("div");
     actions.className = "hi-actions";
+
+    const bookmarkBtn = document.createElement("button");
+    bookmarkBtn.className = `copy-btn bookmark-btn${
+      entry.bookmarked ? " active" : ""
+    }`;
+    bookmarkBtn.textContent = entry.bookmarked ? "★" : "☆";
+    bookmarkBtn.title = entry.bookmarked ? t().unbookmark : t().bookmark;
+    bookmarkBtn.addEventListener("click", async () => {
+      state.history = state.history.map((e) =>
+        e.id === entry.id ? { ...e, bookmarked: !e.bookmarked } : e
+      );
+      await storageSet({ [STORAGE.history]: state.history });
+      renderHistory();
+    });
 
     const copyBtn = document.createElement("button");
     copyBtn.className = "copy-btn";
@@ -275,6 +345,7 @@ function renderHistory() {
       renderHistory();
     });
 
+    actions.appendChild(bookmarkBtn);
     actions.appendChild(copyBtn);
     actions.appendChild(delBtn);
     top.appendChild(type);
@@ -325,7 +396,7 @@ async function handleConvert() {
       type: state.toFusha ? "fusha" : "tunisian",
       timestamp: Date.now(),
     };
-    state.history = [entry, ...state.history].slice(0, 10);
+    state.history = pruneHistory([entry, ...state.history]);
     await storageSet({ [STORAGE.history]: state.history });
     renderHistory();
   } catch (err) {
@@ -375,8 +446,18 @@ function bindEvents() {
   });
 
   $("clear-btn").addEventListener("click", async () => {
-    state.history = [];
-    await storageSet({ [STORAGE.history]: [] });
+    state.history = state.history.filter((entry) => entry.bookmarked);
+    await storageSet({ [STORAGE.history]: state.history });
+    renderHistory();
+  });
+
+  $("tab-recent").addEventListener("click", () => {
+    state.historyTab = "recent";
+    renderHistory();
+  });
+
+  $("tab-saved").addEventListener("click", () => {
+    state.historyTab = "saved";
     renderHistory();
   });
 

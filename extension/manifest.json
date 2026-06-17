@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Arabic Converter",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Convert Tunisian Arabic (Latin/Arabizi) into Arabic script or Modern Standard Arabic (Fusha).",
   "action": {
     "default_popup": "popup.html",

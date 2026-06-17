@@ -91,9 +91,31 @@
       <!-- History -->
       <section class="card history" id="history-card" hidden>
         <div class="history-head">
-          <h2 id="history-title">Recent Conversions</h2>
+          <div class="history-tabs" role="tablist">
+            <button
+              class="history-tab active"
+              id="tab-recent"
+              type="button"
+              role="tab"
+              aria-selected="true"
+            >
+              <span id="tab-recent-label">Recent</span>
+              <span class="history-tab-count" id="tab-recent-count">0</span>
+            </button>
+            <button
+              class="history-tab"
+              id="tab-saved"
+              type="button"
+              role="tab"
+              aria-selected="false"
+            >
+              <span id="tab-saved-label">Saved</span>
+              <span class="history-tab-count" id="tab-saved-count">0</span>
+            </button>
+          </div>
           <button class="copy-btn" id="clear-btn" type="button">Clear</button>
         </div>
+        <p class="history-empty" id="history-empty" hidden></p>
         <div id="history-list" class="history-list"></div>
       </section>
 
