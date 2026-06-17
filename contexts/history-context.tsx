@@ -8,6 +8,7 @@ export interface ConversionEntry {
   output: string;
   timestamp: number;
   type: "fusha" | "tunisian";
+  bookmarked?: boolean;
 }
 
 interface HistoryContextType {
@@ -15,11 +16,13 @@ interface HistoryContextType {
   addEntry: (entry: Omit<ConversionEntry, "id" | "timestamp">) => void;
   clearHistory: () => void;
   deleteEntry: (id: string) => void;
+  toggleBookmark: (id: string) => void;
 }
 
 const HistoryContext = createContext<HistoryContextType | undefined>(undefined);
 
 const STORAGE_KEY = "conversion-history";
+const MAX_RECENT = 10;
 
 function getStoredHistory(): ConversionEntry[] {
   if (typeof window === "undefined") return [];
@@ -33,6 +36,15 @@ function getStoredHistory(): ConversionEntry[] {
     console.error("Failed to parse history from localStorage");
     return [];
   }
+}
+
+// Keep all bookmarked entries plus the most recent non-bookmarked ones.
+function pruneHistory(entries: ConversionEntry[]): ConversionEntry[] {
+  const bookmarked = entries.filter((entry) => entry.bookmarked);
+  const recent = entries
+    .filter((entry) => !entry.bookmarked)
+    .slice(0, MAX_RECENT);
+  return [...bookmarked, ...recent].sort((a, b) => b.timestamp - a.timestamp);
 }
 
 export function HistoryProvider({ children }: { children: React.ReactNode }) {
@@ -58,18 +70,28 @@ export function HistoryProvider({ children }: { children: React.ReactNode }) {
       id: Math.random().toString(36).substr(2, 9),
       timestamp: Date.now(),
     };
-    setHistory((prev) => [newEntry, ...prev].slice(0, 10)); // Keep last 10 entries
+    setHistory((prev) => pruneHistory([newEntry, ...prev]));
   };
 
   const deleteEntry = (id: string) => {
     setHistory((prev) => prev.filter((entry) => entry.id !== id));
   };
 
-  const clearHistory = () => setHistory([]);
+  const toggleBookmark = (id: string) => {
+    setHistory((prev) =>
+      prev.map((entry) =>
+        entry.id === id ? { ...entry, bookmarked: !entry.bookmarked } : entry
+      )
+    );
+  };
+
+  // Only clears non-bookmarked entries so saved ones are preserved.
+  const clearHistory = () =>
+    setHistory((prev) => prev.filter((entry) => entry.bookmarked));
 
   return (
     <HistoryContext.Provider
-      value={{ history, addEntry, clearHistory, deleteEntry }}
+      value={{ history, addEntry, clearHistory, deleteEntry, toggleBookmark }}
     >
       {children}
     </HistoryContext.Provider>
