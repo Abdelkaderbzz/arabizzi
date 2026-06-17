@@ -1,66 +1,68 @@
 # Arabic Converter — Chrome Extension
 
-A Manifest V3 Chrome extension that converts Tunisian Arabic (Latin / Arabizi)
-into **Arabic script** or **Modern Standard Arabic (Fusha)** using Google Gemini.
+A Manifest V3 Chrome extension that converts Tunisian Arabic (Latin / Arabizi) into **Arabic script** or **Modern Standard Arabic (Fusha)** using Google Gemini.
 
-It is fully self-contained (no backend). Each user supplies their own free
-Gemini API key, which is stored only in their browser via `chrome.storage.local`.
+It runs entirely in the browser — no backend required. Each user supplies their own free Gemini API key, stored only in `chrome.storage.local`.
+
+Part of the [Arabic Converter](https://github.com/Abdelkaderbzz/arabic-converter-extenstion) project.
 
 ## Features
 
 - Toolbar popup converter with Fusha / Tunisian modes
 - Bring-your-own Gemini API key (free tier)
-- Copy output, recent history (last 10), per-item copy/delete
+- Copy output and recent history (last 10 entries)
+- Per-item copy and delete in history
 - English / Arabic interface with RTL support
 
 ## Files
 
 ```
 extension/
-  manifest.json     # MV3 manifest
-  popup.html        # popup UI
-  popup.css         # styling (teal/cream theme)
-  popup.js          # logic + Gemini call
-  icons/            # icon16/48/128.png (+ generate.js to regenerate)
+├── manifest.json     # MV3 manifest
+├── popup.html        # popup UI
+├── popup.css         # styling (teal/cream theme)
+├── popup.js          # logic + Gemini API call
+└── icons/            # icon16.png, icon48.png, icon128.png
 ```
 
 ## Get a free Gemini API key
 
-1. Go to https://aistudio.google.com/apikey
-2. Create an API key (no credit card needed).
-3. In the extension, click the gear (⚙) icon, paste the key, and Save.
+1. Go to [Google AI Studio](https://aistudio.google.com/apikey)
+2. Create an API key (no credit card required)
+3. In the extension popup, click the gear icon, paste the key, and save
 
-## Load it locally (development)
+## Load locally (development)
 
 1. Open `chrome://extensions`
 2. Enable **Developer mode** (top right)
 3. Click **Load unpacked**
-4. Select the `extension/` folder
+4. Select this `extension/` folder
 5. Pin the extension and click its icon to open the popup
 
-## Publish to the Chrome Web Store
+## Package for the Chrome Web Store
 
-1. Replace the placeholder icons in `icons/` with a real logo
-   (16×16, 48×48, 128×128 PNG). You can regenerate placeholders with
-   `node icons/generate.js`.
-2. Zip the **contents** of the `extension/` folder (not the parent folder):
-   ```bash
-   cd extension && zip -r ../arabic-converter-extension.zip . -x "icons/generate.js"
-   ```
-3. Create a developer account at
-   https://chrome.google.com/webstore/devconsole (one-time $5 fee).
-4. Click **New item**, upload the zip.
-5. Fill in the listing:
-   - Description, category (Productivity), language
-   - Screenshots (1280×800 or 640×400)
-   - At least one 128×128 icon
-   - Privacy: declare that the API key is stored locally and that text is sent
-     to Google's Gemini API for conversion. Provide a privacy policy URL.
-6. Submit for review.
+```bash
+cd extension && zip -r ../arabic-converter-extension.zip . -x "icons/generate.js"
+```
 
-## Notes
+Upload `arabic-converter-extension.zip` at the [Chrome Web Store Developer Dashboard](https://chrome.google.com/webstore/devconsole).
 
-- The extension calls `https://generativelanguage.googleapis.com` directly,
-  which is declared in `host_permissions`.
-- Usage counts against the user's own Gemini free tier (~1,500 requests/day).
-- No data is sent anywhere except Google's Gemini API.
+### Listing checklist
+
+- **Name:** Arabic Converter
+- **Category:** Productivity
+- **Icons:** 16×16, 48×48, and 128×128 PNGs (included in `icons/`)
+- **Screenshots:** 1280×800 or 640×400
+- **Privacy policy:** deploy `netlify-privacy/index.html` and use that URL
+- **Privacy practices:** declare local storage of API key and that text is sent to Google Gemini for conversion
+
+## How it works
+
+- Calls `https://generativelanguage.googleapis.com` directly (declared in `host_permissions`)
+- Uses the `gemini-2.5-flash` model
+- Usage counts against the user's own Gemini free tier
+- No data is sent anywhere except Google's Gemini API
+
+## Web app
+
+For the full Next.js version with saved bookmarks, examples, and server-side API key management, see the [main README](../README.md).

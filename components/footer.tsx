@@ -22,7 +22,7 @@ export function Footer() {
           asChild
         >
           <a
-            href="https://github.com/braiekhazem/tunisian-converter"
+            href="https://github.com/Abdelkaderbzz/arabic-converter-extenstion"
             target="_blank"
             rel="noopener noreferrer"
           >
