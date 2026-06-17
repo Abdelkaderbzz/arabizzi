@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
+import { DM_Sans, Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/contexts/language-context";
 import { HistoryProvider } from "@/contexts/history-context";
-import { Footer } from "@/components/footer";
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const notoArabic = Noto_Sans_Arabic({
+  subsets: ["arabic"],
+  variable: "--font-arabic",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Tunisian Arabic Converter",
+  title: "Arabic Converter",
   description: "Convert Tunisian Arabic text between Latin and Arabic scripts",
 };
 
@@ -15,14 +27,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={`${dmSans.variable} ${notoArabic.variable}`}>
+      <body className="font-[family-name:var(--font-sans)]">
         <LanguageProvider>
-          <HistoryProvider>
-            <div className="min-h-screen flex flex-col">
-              <main className="flex-1">{children}</main>
-            </div>
-          </HistoryProvider>
+          <HistoryProvider>{children}</HistoryProvider>
         </LanguageProvider>
       </body>
     </html>
