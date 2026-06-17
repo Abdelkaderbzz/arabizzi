@@ -1,10 +1,17 @@
 export const ar = {
-  title: "محول العربية التونسية",
+  title: "محول العربية",
   description: "حوّل النص العربي التونسي بين الحروف اللاتينية والعربية",
   latinInput: {
     label: "العربية التونسية (حروف لاتينية)",
     placeholder:
       "اكتب بالعربية التونسية باستخدام الحروف اللاتينية (مثال: '3aslema, chneya 7alek?')",
+  },
+  mode: {
+    label: "نوع الإخراج",
+    fusha: "فصحى",
+    fushaDesc: "العربية الفصحى",
+    tunisian: "تونسي",
+    tunisianDesc: "حروف عربية",
   },
   switchLabel: {
     fusha: "التحويل إلى العربية الفصحى",
@@ -13,13 +20,16 @@ export const ar = {
   button: {
     convert: "تحويل",
     converting: "جاري التحويل...",
+    copy: "نسخ",
+    copied: "تم النسخ!",
   },
   output: {
     fusha: "العربية الفصحى",
     tunisian: "العربية التونسية (حروف عربية)",
+    empty: "سيظهر النص المحوّل هنا",
   },
   examples: {
-    title: "أمثلة:",
+    title: "جرّب مثالاً",
     hello: "مرحبا",
     howAreYou: "كيف حالك؟",
     goingHome: "سأذهب إلى المنزل الآن",
@@ -30,8 +40,16 @@ export const ar = {
   history: {
     title: "التحويلات الأخيرة",
     empty: "لا يوجد سجل تحويلات بعد",
-    clearAll: "مسح كل السجل",
+    savedEmpty: "لا توجد تحويلات محفوظة بعد",
+    clearAll: "مسح السجل",
     deleteEntry: "حذف التحويل",
+    restore: "استخدام مجدداً",
+    copy: "نسخ",
+    copied: "تم النسخ!",
+    bookmark: "حفظ",
+    unbookmark: "إزالة من المحفوظات",
+    tabRecent: "الأخيرة",
+    tabSaved: "المحفوظة",
   },
   footer: {
     support: "ادعم المشروع",
