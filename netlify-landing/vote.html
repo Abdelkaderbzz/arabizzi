@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <title>Vote for Arabizzi | Qabilah Hackathon</title>
+    <meta
+      name="description"
+      content="Step-by-step guide to vote for Arabizzi in the Qabilah hackathon — sign in with Google or LinkedIn and click تصويت."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#ea580c" />
+    <link rel="canonical" href="https://arabizzi.com/vote.html" />
+
+    <link rel="icon" href="./icon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="./icon.png" />
+    <link rel="stylesheet" href="./vote-banner.css" />
+
+    <style>
+      @font-face {
+        font-family: "Thmanyah Sans";
+        src: url("./thmanyah-font/thmanyahsans-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Thmanyah Sans";
+        src: url("./thmanyah-font/thmanyahsans-Bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      :root {
+        --bg: #f7f4ee;
+        --card: #ffffff;
+        --foreground: #1d2329;
+        --muted: #6b7280;
+        --primary: #25876d;
+        --border: #e4e0d6;
+        --radius: 16px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Thmanyah Sans", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--foreground);
+        line-height: 1.6;
+      }
+
+      a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .page-bg {
+        background-color: var(--bg);
+        background-image:
+          radial-gradient(
+            ellipse 80% 50% at 50% -20%,
+            rgba(234, 88, 12, 0.08),
+            transparent
+          ),
+          radial-gradient(
+            ellipse 60% 40% at 100% 100%,
+            rgba(37, 135, 109, 0.06),
+            transparent
+          );
+        min-height: 100vh;
+      }
+
+      .container {
+        width: min(760px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      header {
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .brand:hover {
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        box-shadow: 0 4px 14px rgba(37, 135, 109, 0.2);
+      }
+
+      .brand span {
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 22px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        transition: transform 0.15s ease;
+      }
+
+      .btn:hover {
+        text-decoration: none;
+        transform: translateY(-1px);
+      }
+
+      .btn-vote {
+        background: linear-gradient(135deg, #e6783c, #d45a1a);
+        color: #fff;
+        box-shadow: 0 8px 24px rgba(212, 90, 26, 0.28);
+      }
+
+      main {
+        padding: 8px 0 48px;
+      }
+
+      .vote-panel {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: calc(var(--radius) + 4px);
+        padding: 28px;
+        box-shadow: 0 12px 40px rgba(29, 35, 41, 0.06);
+      }
+
+      .vote-badge {
+        display: inline-block;
+        background: rgba(234, 88, 12, 0.12);
+        color: #c2410c;
+        font-size: 0.82rem;
+        font-weight: 700;
+        padding: 6px 14px;
+        border-radius: 999px;
+        margin-bottom: 12px;
+      }
+
+      .vote-panel h1 {
+        font-size: clamp(1.6rem, 4vw, 2.1rem);
+        margin-bottom: 8px;
+      }
+
+      .vote-intro {
+        color: var(--muted);
+        margin-bottom: 24px;
+      }
+
+      .vote-intro-ar {
+        direction: rtl;
+        text-align: right;
+        color: var(--foreground);
+        font-weight: 600;
+        margin-top: 8px;
+      }
+
+      .vote-countdown-wrap {
+        background: rgba(29, 35, 41, 0.92);
+        border: 1px solid rgba(230, 120, 60, 0.35);
+        border-radius: var(--radius);
+        padding: 18px;
+        color: #f3f4f6;
+        margin-bottom: 28px;
+      }
+
+      .vote-countdown-label {
+        font-size: 0.85rem;
+        color: rgba(243, 244, 246, 0.75);
+        margin-bottom: 12px;
+        text-align: center;
+      }
+
+      .vote-countdown {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+
+      .vote-countdown-unit {
+        text-align: center;
+      }
+
+      .vote-countdown-value {
+        display: block;
+        font-size: clamp(1.35rem, 3vw, 1.75rem);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        margin-bottom: 4px;
+      }
+
+      .vote-countdown-name {
+        display: block;
+        font-size: 0.72rem;
+        color: rgba(243, 244, 246, 0.65);
+      }
+
+      .vote-countdown-ended {
+        text-align: center;
+        font-weight: 600;
+        color: #fcd34d;
+      }
+
+      .vote-steps {
+        list-style: none;
+        display: grid;
+        gap: 20px;
+        margin-bottom: 28px;
+      }
+
+      .vote-step {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 16px;
+        align-items: start;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px;
+        background: rgba(247, 244, 238, 0.5);
+      }
+
+      .vote-step-num {
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: var(--primary);
+        color: #fff;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .vote-step-body h2 {
+        font-size: 1.05rem;
+        margin-bottom: 6px;
+      }
+
+      .vote-step-body p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+      }
+
+      .vote-step-ar {
+        direction: rtl;
+        text-align: right;
+        color: var(--foreground);
+        font-weight: 500;
+      }
+
+      .vote-step-img-wrap {
+        margin-top: 14px;
+        max-width: 100%;
+      }
+
+      .vote-step-img-wrap--highlight {
+        position: relative;
+        display: inline-block;
+        max-width: min(100%, 520px);
+        line-height: 0;
+      }
+
+      .vote-step-img {
+        display: block;
+        max-width: min(100%, 520px);
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 8px 24px rgba(29, 35, 41, 0.08);
+      }
+
+      .vote-highlight-ring {
+        position: absolute;
+        right: 7.3%;
+        bottom: 3.2%;
+        width: 12.8%;
+        height: 5.5%;
+        border: 2px solid #f97316;
+        border-radius: 999px;
+        box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.22);
+        pointer-events: none;
+        animation: vote-ring-glow 1.8s ease-in-out infinite;
+      }
+
+      @keyframes vote-ring-glow {
+        0%,
+        100% {
+          border-color: #f97316;
+          box-shadow:
+            0 0 0 3px rgba(249, 115, 22, 0.25),
+            0 0 12px rgba(249, 115, 22, 0.35);
+        }
+
+        50% {
+          border-color: #fb923c;
+          box-shadow:
+            0 0 0 6px rgba(249, 115, 22, 0.2),
+            0 0 24px rgba(249, 115, 22, 0.7);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .vote-highlight-ring {
+          animation: none;
+        }
+      }
+
+      .vote-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .vote-note {
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      footer {
+        padding: 32px 0 48px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 640px) {
+        .vote-step {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body class="has-vote-banner">
+    <a class="vote-banner" href="./vote.html" aria-current="page">
+      <span class="vote-banner-text">
+        <strong>Vote for Arabizzi</strong> · Qabilah Hackathon
+        <span lang="ar">· صوّت لـ Arabizzi في قبيلة</span>
+      </span>
+      <span class="vote-banner-cta">How to vote</span>
+    </a>
+
+    <div class="page-bg">
+      <div class="container">
+        <header>
+          <a class="brand" href="./index.html">
+            <img src="./icon.png" alt="Arabizzi" width="44" height="44" />
+            <span>Arabizzi</span>
+          </a>
+          <a
+            class="btn btn-vote"
+            href="https://qabilah.com/hackathon/255665101472799432/projects/259793491490504704"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open on Qabilah
+          </a>
+        </header>
+
+        <main>
+          <article class="vote-panel">
+            <span class="vote-badge">Qabilah Hackathon · قبيلة</span>
+            <h1>How to vote for Arabizzi</h1>
+            <p class="vote-intro">
+              Two quick steps — open our project on Qabilah, sign in if needed,
+              then click the vote button.
+            </p>
+            <p class="vote-intro-ar">خطوتان فقط للتصويت — اتبع الدليل أدناه</p>
+
+            <div class="vote-countdown-wrap">
+              <p class="vote-countdown-label">
+                Voting closes in · ينتهي التصويت خلال
+              </p>
+              <div
+                class="vote-countdown"
+                id="vote-countdown"
+                data-end="2026-06-26T00:00:00+03:00"
+                aria-live="polite"
+              >
+                <div class="vote-countdown-unit">
+                  <span class="vote-countdown-value" id="vote-days">--</span>
+                  <span class="vote-countdown-name">Days · أيام</span>
+                </div>
+                <div class="vote-countdown-unit">
+                  <span class="vote-countdown-value" id="vote-hours">--</span>
+                  <span class="vote-countdown-name">Hours · ساعات</span>
+                </div>
+                <div class="vote-countdown-unit">
+                  <span class="vote-countdown-value" id="vote-minutes">--</span>
+                  <span class="vote-countdown-name">Min · دقيقة</span>
+                </div>
+                <div class="vote-countdown-unit">
+                  <span class="vote-countdown-value" id="vote-seconds">--</span>
+                  <span class="vote-countdown-name">Sec · ثانية</span>
+                </div>
+              </div>
+            </div>
+
+            <ol class="vote-steps">
+              <li class="vote-step">
+                <span class="vote-step-num" aria-hidden="true">1</span>
+                <div class="vote-step-body">
+                  <h2>Open the link &amp; sign in</h2>
+                  <p>
+                    Open the Arabizzi project on Qabilah using the button below.
+                    If you don't have an account, create one with
+                    <strong>Google</strong> or <strong>LinkedIn</strong>.
+                  </p>
+                  <p class="vote-step-ar">
+                    افتح رابط المشروع. إذا لم يكن لديك حساب، سجّل عبر Google أو
+                    LinkedIn.
+                  </p>
+                  <div class="vote-step-img-wrap">
+                    <img
+                      class="vote-step-img"
+                      src="./images/vote/step-signup.png"
+                      alt="Qabilah sign-in screen with Google and LinkedIn buttons"
+                      loading="lazy"
+                      width="1024"
+                      height="948"
+                    />
+                  </div>
+                </div>
+              </li>
+              <li class="vote-step">
+                <span class="vote-step-num" aria-hidden="true">2</span>
+                <div class="vote-step-body">
+                  <h2>Click <span dir="rtl">«تصويت»</span></h2>
+                  <p>
+                    On the project page, tap the
+                    <strong>Vote</strong> button on the bottom right —
+                    <strong dir="rtl">تصويت</strong> in Arabic.
+                  </p>
+                  <p class="vote-step-ar">
+                    في صفحة المشروع، اضغط زر «تصويت» في الأسفل على اليمين.
+                  </p>
+                  <div class="vote-step-img-wrap vote-step-img-wrap--highlight">
+                    <img
+                      class="vote-step-img"
+                      src="./images/vote/step-vote.png"
+                      alt="Arabizzi project page on Qabilah — tap the Vote (تصويت) button at the bottom right"
+                      loading="lazy"
+                      width="1024"
+                      height="964"
+                    />
+                    <span class="vote-highlight-ring" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </li>
+            </ol>
+
+            <div class="vote-actions">
+              <a
+                class="btn btn-vote"
+                href="https://qabilah.com/hackathon/255665101472799432/projects/259793491490504704"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Vote for Arabizzi on Qabilah
+              </a>
+              <span class="vote-note">Free · less than 1 minute</span>
+            </div>
+          </article>
+        </main>
+
+        <footer>
+          <span>© 2026 Arabizzi</span>
+          <div class="footer-links">
+            <a href="./index.html">Home</a>
+            <a href="./releases.html">Releases</a>
+            <a href="./privacy.html">Privacy</a>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const countdown = document.getElementById("vote-countdown");
+        if (!countdown) return;
+
+        const end = new Date(countdown.dataset.end || "").getTime();
+        const daysEl = document.getElementById("vote-days");
+        const hoursEl = document.getElementById("vote-hours");
+        const minutesEl = document.getElementById("vote-minutes");
+        const secondsEl = document.getElementById("vote-seconds");
+
+        function pad(value) {
+          return String(value).padStart(2, "0");
+        }
+
+        function tick() {
+          const remaining = end - Date.now();
+          if (remaining <= 0) {
+            countdown.innerHTML =
+              '<p class="vote-countdown-ended">Voting has closed · انتهى التصويت</p>';
+            return;
+          }
+
+          const totalSeconds = Math.floor(remaining / 1000);
+          const days = Math.floor(totalSeconds / 86400);
+          const hours = Math.floor((totalSeconds % 86400) / 3600);
+          const minutes = Math.floor((totalSeconds % 3600) / 60);
+          const seconds = totalSeconds % 60;
+
+          if (daysEl) daysEl.textContent = pad(days);
+          if (hoursEl) hoursEl.textContent = pad(hours);
+          if (minutesEl) minutesEl.textContent = pad(minutes);
+          if (secondsEl) secondsEl.textContent = pad(seconds);
+        }
+
+        tick();
+        setInterval(tick, 1000);
+      })();
+    </script>
+    <script>
+      window.Fu = window.Fu || {};
+      Fu.access_token = "c73c052759e3602ca716ff469cde44";
+      (function (d) {
+        let s = d.createElement("script");
+        s.async = true;
+        s.src = "https://widget.feeduser.me/widget/v1.js";
+        (d.head || d.body).appendChild(s);
+      })(document);
+    </script>
+  </body>
+</html>
