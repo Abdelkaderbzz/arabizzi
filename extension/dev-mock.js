@@ -1,8 +1,8 @@
 // Mock Chrome APIs for local UI preview (open preview.html in a browser).
 (function () {
   const store = {
-    gemini_api_key: "preview-mode",
     language: "ar",
+    output_mode: "tunisian",
     to_fusha: false,
     conversion_history: [
       {
