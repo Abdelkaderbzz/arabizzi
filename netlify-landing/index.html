@@ -1039,21 +1039,84 @@
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: var(--radius);
+        overflow: hidden;
+      }
+
+      .faq-item summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
         padding: 18px 22px;
-      }
-
-      .faq-item h3 {
         font-size: 1rem;
-        margin-bottom: 8px;
+        font-weight: 600;
+        line-height: 1.4;
+        user-select: none;
       }
 
-      .faq-item p {
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-item summary::after {
+        content: "";
+        width: 9px;
+        height: 9px;
+        flex-shrink: 0;
+        border-right: 2px solid var(--primary);
+        border-bottom: 2px solid var(--primary);
+        transform: rotate(45deg);
+        transition: transform 0.25s ease;
+      }
+
+      .faq-item[open] summary::after {
+        transform: rotate(-135deg);
+      }
+
+      .faq-item summary:hover {
+        color: var(--primary-dark);
+      }
+
+      .faq-item summary:focus-visible {
+        outline: 2px solid var(--primary);
+        outline-offset: -2px;
+        border-radius: var(--radius);
+      }
+
+      .faq-answer {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.35s ease;
+      }
+
+      .faq-item[open] .faq-answer {
+        grid-template-rows: 1fr;
+      }
+
+      .faq-answer-inner {
+        overflow: hidden;
+      }
+
+      .faq-answer-inner p {
         color: var(--muted);
         font-size: 0.95rem;
+        padding: 0 22px 18px;
       }
 
-      .faq-item a {
+      .faq-answer-inner a {
         font-weight: 600;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .faq-answer {
+          transition: none;
+        }
+
+        .faq-item summary::after {
+          transition: none;
+        }
       }
 
       .footer-credit {
@@ -1509,36 +1572,52 @@
             <p>Quick answers about Arabizzi, privacy, and how conversion works.</p>
           </div>
           <div class="faq-list">
-            <article class="faq-item">
-              <h3>What is Arabizzi?</h3>
-              <p>
-                A free Chrome extension that converts Arabizi and Latin text into
-                colloquial Arabic script or Modern Standard Arabic (Fusha), powered
-                by Google Gemini.
-              </p>
-            </article>
-            <article class="faq-item">
-              <h3>Is it free?</h3>
-              <p>
-                Yes. Arabizzi is free to install. You use your own Gemini API key
-                from Google AI Studio, which includes a free tier.
-              </p>
-            </article>
-            <article class="faq-item">
-              <h3>Do I need an Arabic keyboard?</h3>
-              <p>
-                No. Type in Latin letters — like <code>3aslema</code> or
-                <code>chneya 7alek</code> — and copy the Arabic output anywhere.
-              </p>
-            </article>
-            <article class="faq-item">
-              <h3>How is my data handled?</h3>
-              <p>
-                Your API key and settings stay in your browser. Text is sent only to
-                Google Gemini when you convert. Read our
-                <a href="./privacy.html">privacy policy</a>.
-              </p>
-            </article>
+            <details class="faq-item">
+              <summary>What is Arabizzi?</summary>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>
+                    A free Chrome extension that converts Arabizi and Latin text into
+                    colloquial Arabic script or Modern Standard Arabic (Fusha), powered
+                    by Google Gemini.
+                  </p>
+                </div>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>Is it free?</summary>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>
+                    Yes. Arabizzi is free to install. You use your own Gemini API key
+                    from Google AI Studio, which includes a free tier.
+                  </p>
+                </div>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>Do I need an Arabic keyboard?</summary>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>
+                    No. Type in Latin letters — like <code>3aslema</code> or
+                    <code>chneya 7alek</code> — and copy the Arabic output anywhere.
+                  </p>
+                </div>
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>How is my data handled?</summary>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <p>
+                    Your API key and settings stay in your browser. Text is sent only to
+                    Google Gemini when you convert. Read our
+                    <a href="./privacy.html">privacy policy</a>.
+                  </p>
+                </div>
+              </div>
+            </details>
           </div>
         </section>
 
