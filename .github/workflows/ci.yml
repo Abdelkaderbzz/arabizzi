@@ -1,0 +1,117 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run ESLint
+        run: pnpm run lint
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build app
+        run: pnpm run build
+        env:
+          CI: true
+
+  extension:
+    name: Extension
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate extension manifest
+        run: |
+          python3 - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          root = Path("extension")
+          manifest_path = root / "manifest.json"
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+          required = [
+              "manifest_version",
+              "name",
+              "version",
+              "description",
+              "action",
+              "icons",
+          ]
+          missing = [key for key in required if key not in manifest]
+          if missing:
+              print(f"Missing manifest keys: {', '.join(missing)}")
+              sys.exit(1)
+
+          if manifest["manifest_version"] != 3:
+              print("Extension must use manifest_version 3")
+              sys.exit(1)
+
+          files = [
+              root / "popup.html",
+              root / "popup.js",
+              root / "popup.css",
+              root / "icons/icon16.png",
+              root / "icons/icon48.png",
+              root / "icons/icon128.png",
+          ]
+          missing_files = [str(path) for path in files if not path.exists()]
+          if missing_files:
+              print("Missing extension files:")
+              print("\n".join(missing_files))
+              sys.exit(1)
+
+          print("Extension manifest and required files are valid.")
+          PY

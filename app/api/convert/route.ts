@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
-import { getClientIp } from "@/lib/get-client-ip";
 import { UsageTracker } from "@/lib/usage-tracker";
 
 const fushaPrompt = (

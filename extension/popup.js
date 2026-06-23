@@ -216,7 +216,6 @@ function pruneHistory(entries) {
 
 // Elements
 const $ = (id) => document.getElementById(id);
-const els = {};
 
 function storageGet(keys) {
   return new Promise((resolve) => chrome.storage.local.get(keys, resolve));
