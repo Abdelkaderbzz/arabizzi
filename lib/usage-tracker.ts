@@ -14,7 +14,7 @@ export class UsageTracker {
       try {
         const fileContent = await fs.readFile(USAGE_FILE, "utf-8");
         data = JSON.parse(fileContent);
-      } catch (error) {
+      } catch {
         // File doesn't exist or is invalid, use empty object
       }
 
@@ -35,7 +35,7 @@ export class UsageTracker {
     try {
       const fileContent = await fs.readFile(USAGE_FILE, "utf-8");
       return JSON.parse(fileContent);
-    } catch (error) {
+    } catch {
       return {};
     }
   }

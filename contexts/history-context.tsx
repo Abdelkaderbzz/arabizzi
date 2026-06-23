@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useRef } from "react";
 
 export interface ConversionEntry {
   id: string;
@@ -32,7 +32,7 @@ function getStoredHistory(): ConversionEntry[] {
 
   try {
     return JSON.parse(stored);
-  } catch (e) {
+  } catch {
     console.error("Failed to parse history from localStorage");
     return [];
   }
@@ -48,21 +48,23 @@ function pruneHistory(entries: ConversionEntry[]): ConversionEntry[] {
 }
 
 export function HistoryProvider({ children }: { children: React.ReactNode }) {
-  const [isClient, setIsClient] = useState(false);
+  const hasHydratedRef = useRef(false);
   const [history, setHistory] = useState<ConversionEntry[]>([]);
 
   // Handle hydration
   useEffect(() => {
-    setIsClient(true);
-    setHistory(getStoredHistory());
+    queueMicrotask(() => {
+      setHistory(getStoredHistory());
+      hasHydratedRef.current = true;
+    });
   }, []);
 
   // Save history to localStorage whenever it changes
   useEffect(() => {
-    if (isClient) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
-    }
-  }, [history, isClient]);
+    if (!hasHydratedRef.current) return;
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  }, [history]);
 
   const addEntry = (entry: Omit<ConversionEntry, "id" | "timestamp">) => {
     const newEntry: ConversionEntry = {
