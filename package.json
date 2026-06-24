@@ -25,6 +25,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "validate": "pnpm run lint && pnpm run build",
     "extension": "bash scripts/run-extension.sh",
     "extension:preview": "python3 -m http.server 5173 --directory extension",
     "extension:preview:user": "python3 -m http.server 5173 --directory extension",
