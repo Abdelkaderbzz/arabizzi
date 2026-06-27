@@ -19,15 +19,23 @@ body.has-vote-banner {
   gap: 10px;
   flex-wrap: wrap;
   padding: 8px 16px;
-  background: linear-gradient(90deg, #c2410c, #ea580c, #e6783c);
+  background: linear-gradient(90deg, #14532d, #15803d, #ca8a04);
   color: #fff;
   text-decoration: none;
   font-size: 0.88rem;
-  box-shadow: 0 4px 20px rgba(194, 65, 12, 0.35);
+  box-shadow: 0 4px 20px rgba(21, 128, 61, 0.35);
   transition: filter 0.15s ease;
 }
 
-.vote-banner:hover {
+.vote-banner--finalist {
+  cursor: default;
+}
+
+a.vote-banner--finalist {
+  cursor: pointer;
+}
+
+a.vote-banner:hover {
   filter: brightness(1.05);
   text-decoration: none;
 }
