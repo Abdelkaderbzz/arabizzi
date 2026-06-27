@@ -110,6 +110,7 @@ Full details: [extension/README.md](extension/README.md)
 
 ```bash
 pnpm dev      # run web app locally
+pnpm landing  # static landing page (port 5174)
 pnpm build    # production build
 pnpm start    # start production server
 pnpm lint     # run ESLint

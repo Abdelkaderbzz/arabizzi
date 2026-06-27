@@ -59,6 +59,16 @@ Package for the Web Store:
 cd extension && zip -r ../arabizzi-extension.zip . -x "icons/generate.js"
 ```
 
+### Landing page
+
+Preview the static marketing site locally:
+
+```bash
+pnpm landing
+```
+
+Open [http://localhost:5174](http://localhost:5174). See [netlify-landing/README.md](netlify-landing/README.md) for deploy details.
+
 ## Pull request guidelines
 
 - Open PRs against the `main` branch

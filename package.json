@@ -29,6 +29,7 @@
     "extension": "bash scripts/run-extension.sh",
     "extension:preview": "python3 -m http.server 5173 --directory extension",
     "extension:preview:user": "python3 -m http.server 5173 --directory extension",
+    "landing": "bash scripts/run-landing.sh",
     "prepare": "husky"
   },
   "dependencies": {

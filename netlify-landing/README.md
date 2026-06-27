@@ -4,6 +4,25 @@ Static landing page for the Chrome extension. Deploy the **`netlify-landing/`** 
 
 **Live site:** [arabizzi.com](https://arabizzi.com/) · **Repository:** [github.com/Abdelkaderbzz/arabizzi](https://github.com/Abdelkaderbzz/arabizzi)
 
+## Local preview
+
+From the repo root:
+
+```bash
+pnpm landing
+```
+
+Open [http://localhost:5174](http://localhost:5174). Press `Ctrl+C` to stop the server.
+
+If the port is already in use, the script prints the running URL and how to stop it. Use another port with `PORT=5175 pnpm landing`.
+
+| Page | URL |
+| --- | --- |
+| Home | http://localhost:5174/index.html |
+| Releases | http://localhost:5174/releases.html |
+| Privacy | http://localhost:5174/privacy.html |
+| Vote guide / results | http://localhost:5174/vote.html |
+
 ## Deploy to Netlify
 
 ### Option A — Drag & drop
