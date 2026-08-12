@@ -8,7 +8,7 @@
     <title>Release History | Arabizzi Chrome Extension</title>
     <meta
       name="description"
-      content="Full Arabizzi release history and changelog — v1.0.0 through v1.4.0 with dates and changes."
+      content="Full Arabizzi release history and changelog — v1.0.0 through v1.4.2 with dates and changes."
     />
     <meta name="author" content="Abdelkader Bouzomita" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -30,7 +30,7 @@
     <meta name="twitter:title" content="Release Notes | Arabizzi" />
     <meta
       name="twitter:description"
-      content="Arabizzi v1.4.0 — open source ready, Mortakaz launch section, landing page polish, and CI for contributors."
+      content="Arabizzi v1.4.2 — translate selected text on any page with a selection pill and context menu."
     />
     <meta name="twitter:image" content="https://arabizzi.com/icon.png" />
 
@@ -50,7 +50,7 @@
           {
             "@type": "SoftwareApplication",
             "name": "Arabizzi",
-            "softwareVersion": "1.4.0",
+            "softwareVersion": "1.4.2",
             "applicationCategory": "BrowserApplication",
             "operatingSystem": "Chrome",
             "offers": {
@@ -572,16 +572,85 @@
           <section class="version-card" aria-label="Current version">
             <div>
               <div class="version-label">Current version</div>
-              <div class="version-number">v1.4.0</div>
+              <div class="version-number">v1.4.2</div>
             </div>
             <span class="version-status">Latest release</span>
           </section>
 
           <ol class="release-timeline" aria-label="All releases">
-            <li class="timeline-item timeline-item--latest" id="v1-4-0">
+            <li class="timeline-item timeline-item--latest" id="v1-4-2">
               <span class="timeline-marker" aria-hidden="true"></span>
               <article class="release-card">
                 <span class="timeline-badge timeline-badge--latest">Latest</span>
+                <div class="release-header">
+                  <h2 class="release-title">
+                    <span class="release-version">v1.4.2</span> — Translate on any page
+                  </h2>
+                  <time class="release-date" datetime="2026-08-12">August 12, 2026</time>
+                </div>
+                <section class="release-section" lang="en">
+                  <h2>What's new</h2>
+                  <ul>
+                    <li>
+                      <strong>Selection pill</strong> — select text on any page and
+                      translate in place without opening the popup
+                    </li>
+                    <li>
+                      <strong>Context menu</strong> — right-click → Translate with
+                      Arabizzi → Fusha / colloquial / English / French
+                    </li>
+                    <li>
+                      <strong>Safer architecture</strong> — Gemini calls stay in the
+                      service worker; the content script never sees your API key
+                    </li>
+                    <li>
+                      <strong>Reliability</strong> — model fallbacks, rate-limit
+                      retries, and fixes for empty Gemini responses
+                    </li>
+                    <li>
+                      Thanks to
+                      <a
+                        href="https://github.com/moataz-hjaiji"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >@moataz-hjaiji</a
+                      >
+                      for the page-translation feature
+                    </li>
+                  </ul>
+                </section>
+                <section class="release-section" dir="rtl" lang="ar">
+                  <h2>ما الجديد</h2>
+                  <ul>
+                    <li><strong>زر الترجمة</strong> — حدّد نصاً في أي صفحة وترجمه مباشرة</li>
+                    <li><strong>قائمة السياق</strong> — انقر بزر الفأرة الأيمن للترجمة إلى الفصحى أو العامية أو الإنجليزية أو الفرنسية</li>
+                    <li><strong>أمان أفضل</strong> — مفتاح API يبقى في الخلفية فقط</li>
+                    <li><strong>ثبات أكثر</strong> — إعادة المحاولة عند حدود الاستخدام ونماذج احتياطية</li>
+                    <li>
+                      شكراً لـ
+                      <a
+                        href="https://github.com/moataz-hjaiji"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >@moataz-hjaiji</a
+                      >
+                      على ميزة ترجمة الصفحة
+                    </li>
+                  </ul>
+                </section>
+                <a
+                  class="release-link"
+                  href="https://github.com/Abdelkaderbzz/arabizzi/releases/tag/v1.4.2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >View on GitHub →</a
+                >
+              </article>
+            </li>
+
+            <li class="timeline-item" id="v1-4-0">
+              <span class="timeline-marker" aria-hidden="true"></span>
+              <article class="release-card">
                 <div class="release-header">
                   <h2 class="release-title">
                     <span class="release-version">v1.4.0</span> — Open source ready
