@@ -10,7 +10,7 @@ dependencies:
     version: 3.0.82(zod@3.25.76)
   '@hookform/resolvers':
     specifier: ^3.9.1
-    version: 3.10.0(react-hook-form@7.79.0)
+    version: 3.10.0(react-hook-form@7.80.0)
   '@radix-ui/react-accordion':
     specifier: ^1.2.2
     version: 1.2.14(@types/react-dom@19.2.3)(@types/react@19.2.17)(react-dom@19.2.7)(react@19.2.7)
@@ -132,8 +132,8 @@ dependencies:
     specifier: ^19.2.7
     version: 19.2.7(react@19.2.7)
   react-hook-form:
-    specifier: ^7.54.1
-    version: 7.79.0(react@19.2.7)
+    specifier: ^7.80.0
+    version: 7.80.0(react@19.2.7)
   react-resizable-panels:
     specifier: ^2.1.7
     version: 2.1.9(react-dom@19.2.7)(react@19.2.7)
@@ -509,12 +509,12 @@ packages:
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
     dev: false
 
-  /@hookform/resolvers@3.10.0(react-hook-form@7.79.0):
+  /@hookform/resolvers@3.10.0(react-hook-form@7.80.0):
     resolution: {integrity: sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==}
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
-      react-hook-form: 7.79.0(react@19.2.7)
+      react-hook-form: 7.80.0(react@19.2.7)
     dev: false
 
   /@humanfs/core@0.19.2:
@@ -807,8 +807,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  /@napi-rs/wasm-runtime@1.1.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0):
-    resolution: {integrity: sha512-AWPoBRJ9tsnVhor4sjO7rkni+7p+2IAEFj6cx06UgP10jkQHqay/36uRV/bFkgrh18D9vb4cr8Q0Pthskgzy+Q==}
+  /@napi-rs/wasm-runtime@1.1.6(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0):
+    resolution: {integrity: sha512-ZLv/JdUfkvOy9eCnnBaGfiO+XimbjebAeO+MRQqD/B+FR1tnRN0tpKSJHRbE8sFfS6aqsXZ67TQjfwfsxULVbg==}
     requiresBuild: true
     peerDependencies:
       '@emnapi/core': ^1.7.1
@@ -2504,7 +2504,7 @@ packages:
     dependencies:
       '@emnapi/core': 1.10.0
       '@emnapi/runtime': 1.10.0
-      '@napi-rs/wasm-runtime': 1.1.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+      '@napi-rs/wasm-runtime': 1.1.6(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
     dev: true
     optional: true
 
@@ -4644,8 +4644,8 @@ packages:
       scheduler: 0.27.0
     dev: false
 
-  /react-hook-form@7.79.0(react@19.2.7):
-    resolution: {integrity: sha512-mhYp/MTmXvzYX6AJcJVko0rktoIhhmRnEouObj4wF5i/tCttgJvnp1+9wRkpITZjDTqpo4IOSJqu0dBlPlV/Lw==}
+  /react-hook-form@7.80.0(react@19.2.7):
+    resolution: {integrity: sha512-4P+fk6oXsxY+6xSj7Euhc2sumQD8zQqCuVHoJwoyp9EchP+IUW9OESB7uHFJOKsIBQ4MQqYE84INJFqUCYNoOg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
