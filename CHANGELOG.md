@@ -29,8 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Contributors
 
-- [@moataz-hjaiji](https://github.com/moataz-hjaiji) — page translation feature ([#16](https://github.com/Abdelkaderbzz/arabizzi/pull/16))
-- [@Abdelkaderbzz](https://github.com/Abdelkaderbzz) — review, hardening, and release
+- [@moataz-hjaiji](https://github.com/moataz-hjaiji): page translation feature ([#16](https://github.com/Abdelkaderbzz/arabizzi/pull/16))
+- [@Abdelkaderbzz](https://github.com/Abdelkaderbzz): review, hardening, and release
 
 ## [1.4.0] - 2026-06-23
 
