@@ -32,6 +32,6 @@
       "all_frames": true
     }
   ],
-  "permissions": ["storage", "contextMenus", "scripting", "activeTab"],
+  "permissions": ["storage", "contextMenus", "scripting", "activeTab", "clipboardWrite"],
   "host_permissions": ["https://generativelanguage.googleapis.com/*"]
 }

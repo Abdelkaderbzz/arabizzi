@@ -41,6 +41,15 @@
       p { margin: 0 0 10px; }
       p:last-child { margin-bottom: 0; }
       .hint { color: var(--muted); font-size: 13px; margin-top: 10px; }
+      .editable {
+        width: 100%;
+        min-height: 72px;
+        padding: 10px;
+        border: 1px solid #d9d4c7;
+        border-radius: 8px;
+        background: #fff;
+        font: inherit;
+      }
       textarea {
         width: 100%;
         min-height: 90px;
@@ -60,7 +69,8 @@
       <p class="lede">
         Select any sentence below — the green <strong>Translate</strong> pill appears
         (mouse or keyboard selection). Or right-click a selection and pick a language
-        from the Arabizzi menu.
+        from the Arabizzi menu. Selecting inside an input, textarea, or rich editor
+        also shows <strong>Fix text</strong>, which rewrites the selection in place.
       </p>
 
       <section>
@@ -94,6 +104,17 @@
         <h2>Regression: editable field</h2>
         <textarea>7atit el ktab 3al taula, chouf ken tal9ah.</textarea>
         <p class="hint">Selection inside a textarea should work the same (not just page text).</p>
+      </section>
+
+      <section>
+        <h2>Regression: contenteditable</h2>
+        <div contenteditable="true" class="editable">
+          Ena mchit lel 5edma el barah, ama ma l9itech el chef fi bureau mte3ou.
+        </div>
+        <p class="hint">
+          Rich editors (Gmail, X, Slack) are contenteditable, not textareas —
+          <strong>Fix text</strong> must write back here too, with undo intact.
+        </p>
       </section>
 
       <section>

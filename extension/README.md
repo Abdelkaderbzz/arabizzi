@@ -12,6 +12,7 @@ Part of the [Arabizzi](https://github.com/Abdelkaderbzz/arabizzi) project.
 
 - Toolbar popup converter with Fusha, colloquial Arabic, English, and French modes
 - **Translate on any page** — select text and a floating "Translate" pill appears next to it
+- **Fix text in place** — select inside any input, textarea, or rich editor and click "Fix text": spelling, grammar, and punctuation are corrected in the same language and written straight back into the field (native undo still works)
 - **Right-click → Translate with Arabizzi** → pick Fusha / colloquial / English / French
 - Bring-your-own Gemini API key (free tier)
 - Copy output, recent history (last 10), and saved bookmarks
