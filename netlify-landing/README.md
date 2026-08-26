@@ -1,4 +1,4 @@
-# Arabizzi — Landing Page
+# Arabizzi: Landing Page
 
 Static landing page for the Chrome extension. Deploy the **`netlify-landing/`** folder to Netlify.
 
@@ -25,12 +25,12 @@ If the port is already in use, the script prints the running URL and how to stop
 
 ## Deploy to Netlify
 
-### Option A — Drag & drop
+### Option A: Drag & drop
 
 1. Zip the contents of this folder (not the parent folder).
 2. Go to [Netlify Drop](https://app.netlify.com/drop) and upload the zip.
 
-### Option B — Git-connected site
+### Option B: Git-connected site
 
 1. Create a new site in Netlify linked to this repo.
 2. Set **Publish directory** to `netlify-landing`.

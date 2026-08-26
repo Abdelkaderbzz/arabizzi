@@ -8,7 +8,7 @@
     <title>Release History | Arabizzi Chrome Extension</title>
     <meta
       name="description"
-      content="Full Arabizzi release history and changelog — v1.0.0 through v1.4.0 with dates and changes."
+      content="Full Arabizzi release history and changelog, v1.0.0 through v1.4.2 with dates and changes."
     />
     <meta name="author" content="Abdelkader Bouzomita" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -30,7 +30,7 @@
     <meta name="twitter:title" content="Release Notes | Arabizzi" />
     <meta
       name="twitter:description"
-      content="Arabizzi v1.4.0 — open source ready, Mortakaz launch section, landing page polish, and CI for contributors."
+      content="Arabizzi v1.4.2: translate selected text on any page with a selection pill and context menu."
     />
     <meta name="twitter:image" content="https://arabizzi.com/icon.png" />
 
@@ -50,7 +50,7 @@
           {
             "@type": "SoftwareApplication",
             "name": "Arabizzi",
-            "softwareVersion": "1.4.0",
+            "softwareVersion": "1.4.2",
             "applicationCategory": "BrowserApplication",
             "operatingSystem": "Chrome",
             "offers": {
@@ -564,7 +564,7 @@
           <div class="page-intro">
             <h1>Release history</h1>
             <p>
-              Full changelog for the Arabizzi Chrome extension — every version,
+              Full changelog for the Arabizzi Chrome extension, every version,
               date, and what changed.
             </p>
           </div>
@@ -572,19 +572,88 @@
           <section class="version-card" aria-label="Current version">
             <div>
               <div class="version-label">Current version</div>
-              <div class="version-number">v1.4.0</div>
+              <div class="version-number">v1.4.2</div>
             </div>
             <span class="version-status">Latest release</span>
           </section>
 
           <ol class="release-timeline" aria-label="All releases">
-            <li class="timeline-item timeline-item--latest" id="v1-4-0">
+            <li class="timeline-item timeline-item--latest" id="v1-4-2">
               <span class="timeline-marker" aria-hidden="true"></span>
               <article class="release-card">
                 <span class="timeline-badge timeline-badge--latest">Latest</span>
                 <div class="release-header">
                   <h2 class="release-title">
-                    <span class="release-version">v1.4.0</span> — Open source ready
+                    <span class="release-version">v1.4.2</span>: Translate on any page
+                  </h2>
+                  <time class="release-date" datetime="2026-08-12">August 12, 2026</time>
+                </div>
+                <section class="release-section" lang="en">
+                  <h2>What's new</h2>
+                  <ul>
+                    <li>
+                      <strong>Selection pill</strong>: select text on any page and
+                      translate in place without opening the popup
+                    </li>
+                    <li>
+                      <strong>Context menu</strong>: right-click → Translate with
+                      Arabizzi → Fusha / colloquial / English / French
+                    </li>
+                    <li>
+                      <strong>Safer architecture</strong>: Gemini calls stay in the
+                      service worker; the content script never sees your API key
+                    </li>
+                    <li>
+                      <strong>Reliability</strong>: model fallbacks, rate-limit
+                      retries, and fixes for empty Gemini responses
+                    </li>
+                    <li>
+                      Thanks to
+                      <a
+                        href="https://github.com/moataz-hjaiji"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >@moataz-hjaiji</a
+                      >
+                      for the page-translation feature
+                    </li>
+                  </ul>
+                </section>
+                <section class="release-section" dir="rtl" lang="ar">
+                  <h2>ما الجديد</h2>
+                  <ul>
+                    <li><strong>زر الترجمة</strong>: حدّد نصاً في أي صفحة وترجمه مباشرة</li>
+                    <li><strong>قائمة السياق</strong>: انقر بزر الفأرة الأيمن للترجمة إلى الفصحى أو العامية أو الإنجليزية أو الفرنسية</li>
+                    <li><strong>أمان أفضل</strong>: مفتاح API يبقى في الخلفية فقط</li>
+                    <li><strong>ثبات أكثر</strong>: إعادة المحاولة عند حدود الاستخدام ونماذج احتياطية</li>
+                    <li>
+                      شكراً لـ
+                      <a
+                        href="https://github.com/moataz-hjaiji"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >@moataz-hjaiji</a
+                      >
+                      على ميزة ترجمة الصفحة
+                    </li>
+                  </ul>
+                </section>
+                <a
+                  class="release-link"
+                  href="https://github.com/Abdelkaderbzz/arabizzi/releases/tag/v1.4.2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >View on GitHub →</a
+                >
+              </article>
+            </li>
+
+            <li class="timeline-item" id="v1-4-0">
+              <span class="timeline-marker" aria-hidden="true"></span>
+              <article class="release-card">
+                <div class="release-header">
+                  <h2 class="release-title">
+                    <span class="release-version">v1.4.0</span>: Open source ready
                   </h2>
                   <time class="release-date" datetime="2026-06-23">June 23, 2026</time>
                 </div>
@@ -592,23 +661,23 @@
                   <h2>What's new</h2>
                   <ul>
                     <li>
-                      <strong>Open source</strong> — MIT license, contributor docs,
+                      <strong>Open source</strong>: MIT license, contributor docs,
                       code of conduct, and security policy on GitHub
                     </li>
                     <li>
-                      <strong>Mortakaz launch</strong> — new section and assets on
+                      <strong>Mortakaz launch</strong>: new section and assets on
                       arabizzi.com
                     </li>
                     <li>
-                      <strong>Landing page polish</strong> — improved output copy UI
+                      <strong>Landing page polish</strong>: improved output copy UI
                       and realistic user preview
                     </li>
                     <li>
-                      <strong>Project CI</strong> — automated lint, build, and
+                      <strong>Project CI</strong>: automated lint, build, and
                       extension checks on every pull request
                     </li>
                     <li>
-                      <strong>Next.js 16</strong> — web app upgrade with Turbopack
+                      <strong>Next.js 16</strong>: web app upgrade with Turbopack
                       and updated tooling
                     </li>
                   </ul>
@@ -616,11 +685,11 @@
                 <section class="release-section" dir="rtl" lang="ar">
                   <h2>ما الجديد</h2>
                   <ul>
-                    <li><strong>مشروع مفتوح المصدر</strong> — رخصة MIT ووثائق للمساهمين على GitHub</li>
-                    <li><strong>إطلاق مرتكز</strong> — قسم جديد ومحتوى على arabizzi.com</li>
-                    <li><strong>تحسينات الموقع</strong> — واجهة أوضح للمعاينة ونسخ النتائج</li>
-                    <li><strong>فحوصات تلقائية</strong> — CI للمساهمات على GitHub</li>
-                    <li><strong>ترقية Next.js 16</strong> — للتطبيق على الويب</li>
+                    <li><strong>مشروع مفتوح المصدر</strong>: رخصة MIT ووثائق للمساهمين على GitHub</li>
+                    <li><strong>إطلاق مرتكز</strong>: قسم جديد ومحتوى على arabizzi.com</li>
+                    <li><strong>تحسينات الموقع</strong>: واجهة أوضح للمعاينة ونسخ النتائج</li>
+                    <li><strong>فحوصات تلقائية</strong>: CI للمساهمات على GitHub</li>
+                    <li><strong>ترقية Next.js 16</strong>: للتطبيق على الويب</li>
                   </ul>
                 </section>
                 <a
@@ -638,7 +707,7 @@
               <article class="release-card">
                 <div class="release-header">
                   <h2 class="release-title">
-                    <span class="release-version">v1.3.0</span> — English &amp;
+                    <span class="release-version">v1.3.0</span>: English &amp;
                     French output modes
                   </h2>
                   <time class="release-date" datetime="2026-06-20">June 20, 2026</time>
@@ -647,23 +716,23 @@
                   <h2>What's new</h2>
                   <ul>
                     <li>
-                      <strong>English &amp; French output</strong> — translate
+                      <strong>English &amp; French output</strong>: translate
                       Arabizi to natural English or French from the popup
                     </li>
                     <li>
-                      <strong>Redesigned mode selector</strong> — four output types
+                      <strong>Redesigned mode selector</strong>: four output types
                       in a clearer 2×2 layout
                     </li>
                     <li>
-                      <strong>History tabs refresh</strong> — improved Recent/Saved
+                      <strong>History tabs refresh</strong>: improved Recent/Saved
                       tabs with icons and badges
                     </li>
                     <li>
-                      <strong>Scrollable output</strong> — long translations scroll
+                      <strong>Scrollable output</strong>: long translations scroll
                       inside the output box
                     </li>
                     <li>
-                      <strong>Landing page</strong> — community reviews, FAQ
+                      <strong>Landing page</strong>: community reviews, FAQ
                       accordion, scroll animations
                     </li>
                   </ul>
@@ -693,7 +762,7 @@
               <article class="release-card">
                 <div class="release-header">
                   <h2 class="release-title">
-                    <span class="release-version">v1.2.2</span> — Landing site and
+                    <span class="release-version">v1.2.2</span>: Landing site and
                     Qabilah vote guide
                   </h2>
                   <time class="release-date" datetime="2026-06-19">June 19, 2026</time>
@@ -702,14 +771,13 @@
                   <h2>What's new</h2>
                   <ul>
                     <li>
-                      <strong>Qabilah vote guide</strong> —
-                      <a href="./vote.html">vote.html</a> with countdown and
+                      <strong>Qabilah vote guide</strong>: <a href="./vote.html">vote.html</a> with countdown and
                       highlighted <strong dir="rtl">تصويت</strong> button
                     </li>
                     <li><strong>Fixed vote banner</strong> on all landing pages</li>
                     <li><strong>Releases &amp; privacy pages</strong> on arabizzi.com</li>
                     <li><strong>Feeduser widget</strong> for site feedback</li>
-                    <li><strong>SEO improvements</strong> — sitemap, FAQ, structured data</li>
+                    <li><strong>SEO improvements</strong>: sitemap, FAQ, structured data</li>
                   </ul>
                 </section>
                 <section class="release-section" dir="rtl" lang="ar">
@@ -736,7 +804,7 @@
               <article class="release-card">
                 <div class="release-header">
                   <h2 class="release-title">
-                    <span class="release-version">v1.2.1</span> — Store publish package
+                    <span class="release-version">v1.2.1</span>: Store publish package
                   </h2>
                   <time class="release-date" datetime="2026-06-19">June 19, 2026</time>
                 </div>
@@ -771,7 +839,7 @@
               <article class="release-card">
                 <div class="release-header">
                   <h2 class="release-title">
-                    <span class="release-version">v1.2.0</span> — Colloquial Arabic UI
+                    <span class="release-version">v1.2.0</span>: Colloquial Arabic UI
                     refresh
                   </h2>
                   <time class="release-date" datetime="2026-06-18">June 18, 2026</time>
@@ -780,27 +848,27 @@
                   <h2>What's new</h2>
                   <ul>
                     <li>
-                      <strong>Colloquial Arabic labels</strong> — عامية instead of
+                      <strong>Colloquial Arabic labels</strong>: عامية instead of
                       Tunisian
                     </li>
                     <li>
-                      <strong>History panel</strong> — Recent/Saved tabs, bookmarks,
+                      <strong>History panel</strong>: Recent/Saved tabs, bookmarks,
                       restore, timestamps
                     </li>
                     <li>
-                      <strong>UI polish</strong> — Thmanyah font, smaller typography,
+                      <strong>UI polish</strong>: Thmanyah font, smaller typography,
                       scrollable output
                     </li>
-                    <li><strong>Fixed brand</strong> — title stays <strong>Arabizzi</strong></li>
-                    <li><strong>Dev tooling</strong> — preview page and Chrome load helper</li>
+                    <li><strong>Fixed brand</strong>: title stays <strong>Arabizzi</strong></li>
+                    <li><strong>Dev tooling</strong>: preview page and Chrome load helper</li>
                   </ul>
                 </section>
                 <section class="release-section" dir="rtl" lang="ar">
                   <h2>ما الجديد</h2>
                   <ul>
-                    <li><strong>العربية العامية</strong> — تسميات عامية في الواجهة</li>
-                    <li><strong>سجل التحويلات</strong> — الأخيرة والمحفوظة</li>
-                    <li><strong>تحسينات الواجهة</strong> — خط ثمانية وإخراج قابل للتمرير</li>
+                    <li><strong>العربية العامية</strong>: تسميات عامية في الواجهة</li>
+                    <li><strong>سجل التحويلات</strong>: الأخيرة والمحفوظة</li>
+                    <li><strong>تحسينات الواجهة</strong>: خط ثمانية وإخراج قابل للتمرير</li>
                   </ul>
                 </section>
                 <a
@@ -818,7 +886,7 @@
               <article class="release-card">
                 <div class="release-header">
                   <h2 class="release-title">
-                    <span class="release-version">v1.1.0</span> — Bookmarks, new logo,
+                    <span class="release-version">v1.1.0</span>: Bookmarks, new logo,
                     and landing page
                   </h2>
                   <time class="release-date" datetime="2026-06-17">June 17, 2026</time>
@@ -827,12 +895,12 @@
                   <h2>What's new</h2>
                   <ul>
                     <li>
-                      <strong>Saved bookmarks</strong> — Recent/Saved tabs for
+                      <strong>Saved bookmarks</strong>: Recent/Saved tabs for
                       conversions
                     </li>
                     <li><strong>New logo</strong> and regenerated store icons</li>
                     <li><strong>Thmanyah Sans</strong> typography in the extension</li>
-                    <li><strong>Landing page</strong> — arabizzi.com marketing site</li>
+                    <li><strong>Landing page</strong>: arabizzi.com marketing site</li>
                   </ul>
                 </section>
                 <a
@@ -850,7 +918,7 @@
               <article class="release-card">
                 <div class="release-header">
                   <h2 class="release-title">
-                    <span class="release-version">v1.0.0</span> — Initial Chrome
+                    <span class="release-version">v1.0.0</span>: Initial Chrome
                     extension release
                   </h2>
                   <time class="release-date" datetime="2026-06-17">June 17, 2026</time>

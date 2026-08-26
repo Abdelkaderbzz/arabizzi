@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Arabizzi",
-  "version": "1.3.0",
-  "description": "Convert colloquial Arabic (Latin/Arabizi) into Arabic script, Fusha, English, or French.",
+  "version": "1.4.2",
+  "description": "Convert Arabizi and translate selected text on any page into Fusha, colloquial Arabic, English, or French.",
   "action": {
     "default_popup": "popup.html",
     "default_title": "Arabizzi",
@@ -17,6 +17,21 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "permissions": ["storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "exclude_matches": [
+        "*://chrome.google.com/webstore/*",
+        "*://chromewebstore.google.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "permissions": ["storage", "contextMenus", "scripting", "activeTab"],
   "host_permissions": ["https://generativelanguage.googleapis.com/*"]
 }
