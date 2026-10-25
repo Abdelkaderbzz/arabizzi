@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Fix text in place: select inside any input, textarea, or rich editor and the
+  pill offers "Fix text", which corrects spelling, grammar, and punctuation in
+  the same language and writes the result straight back into the field
+
+### Fixed
+
+- Copying a result no longer fails on `http://` pages or under a restrictive
+  `Permissions-Policy` (`navigator.clipboard` falls back to `execCommand`)
+- Reloading the extension no longer throws "Extension context invalidated" in
+  already-open tabs; the bubble asks for a page reload instead
+- The selection pill no longer appears inside password fields
+
 ## [1.4.2] - 2026-08-12
 
 ### Added

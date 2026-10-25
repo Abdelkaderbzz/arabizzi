@@ -132,6 +132,25 @@ ${text}
 ### **Output (${target}, ${script}):**`;
 };
 
+// Fix-in-place mode: the output replaces the user's own text in the field they
+// selected in, so it must stay in the same language and script as the input.
+const CORRECT_MODE = "correct";
+
+const correctPrompt = (text) => `You are a text correction engine. Fix spelling, grammar, and punctuation in the input text.
+
+### **Rules:**
+1. **Output only the corrected text.** No explanations, notes, quotes, or the original text.
+2. **Keep the input's own language and script.** Never translate. Arabizi (Arabic in Latin letters with numbers) stays Arabizi; Arabic stays Arabic; English stays English.
+3. **Preserve meaning, tone, and formatting** — line breaks, spacing, emoji, URLs, @mentions, #hashtags, code.
+4. **Change nothing else.** Do not rewrite the style, add words, or shorten. If the input is already correct, return it unchanged.
+
+### **Input Text:**
+"""
+${text}
+"""
+
+### **Output (corrected, same language as the input):**`;
+
 function promptForMode(mode, text) {
   if (mode === "tunisian") return latinaPrompt(text);
   if (mode === "english") return englishPrompt(text);

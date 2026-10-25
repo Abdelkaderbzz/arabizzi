@@ -6,7 +6,7 @@ const vm = require("node:vm");
 
 const src = fs.readFileSync(path.join(__dirname, "translate.js"), "utf8");
 const T = vm.runInThisContext(
-  `${src}\n;({ selectionPrompt, promptForMode, pruneHistory, normalizeOutputMode, outputDir, callGemini, OUTPUT_MODES, MODELS })`
+  `${src}\n;({ selectionPrompt, promptForMode, pruneHistory, normalizeOutputMode, outputDir, callGemini, OUTPUT_MODES, MODELS, correctPrompt, CORRECT_MODE })`
 );
 
 // Every mode gets a real target language, and the input is embedded verbatim.
@@ -28,6 +28,13 @@ assert.ok(T.selectionPrompt("hi", "bogus").includes("Modern Standard Arabic"));
 ["fusha", "tunisian"].forEach((mode) => {
   assert.ok(T.selectionPrompt("3aslema", mode).includes("Arabic script"));
 });
+
+// Correction must never become a translation: no target language, input verbatim.
+const fix = T.correctPrompt("ana n7eb el 9ahwa");
+assert.ok(fix.includes("ana n7eb el 9ahwa"), "correct: input missing");
+assert.ok(!/Translate the following|Modern Standard Arabic \(MSA\)/.test(fix));
+assert.ok(/Never translate/i.test(fix), "correct: translation not forbidden");
+assert.ok(T.CORRECT_MODE === "correct" && !T.OUTPUT_MODES.includes(T.CORRECT_MODE));
 
 // Popup prompts still route per mode.
 assert.ok(T.promptForMode("french", "x").includes("natural French"));

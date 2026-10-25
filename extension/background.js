@@ -108,6 +108,13 @@ async function translateSelection({ text, mode }) {
   const apiKey = stored[STORAGE.apiKey];
   if (!apiKey) return { needsKey: true, language: stored[STORAGE.language] };
 
+  // Correction replaces the user's own text in place — no target language, and
+  // no history entry (the result lives in their field, not in a conversion log).
+  if (mode === CORRECT_MODE) {
+    const output = await callGemini(correctPrompt(input), apiKey);
+    return { output, mode: CORRECT_MODE, dir: "auto" };
+  }
+
   const explicitMode = OUTPUT_MODES.includes(mode);
   const useMode = explicitMode ? mode : normalizeOutputMode(stored);
 
